@@ -74,14 +74,14 @@ We have developed the information chatbot service, Helpy, during IBM design thin
 Helpy is a Framework7 based mobile web-page and server was configured through Node.js.
 
 1. _Chatting_ : Users send text(chatting) or voice
-2. _Chatting_ : Helpy fetches corresponding information from weather & disaster information API obtained from pre-process before chatting start.
+2. _Chatting_ : Before start chatting, it fetches corresponding information from weather & disaster API through preprocess.
 3. _Chatting_ : Receive the response by transforming the voice into text format through STT and sending to Wastson Assistant.   
-4. _Chatting_ : After received the information stored in Google Map or Cloudant, it shows to users.
-5. _Chatting_ : In Cloudant, image lists (disaster manual data depending on user situations) are stored.
-6. _Chatting/Sharing map_ : User can directly report disaster situation by pressing carmra’s button. 
-7. _Sharing map_ : Details reported by users which are stored in Cloudant, can be checked through sharing map.
+4. _Chatting_ : Through Google map API, The shortest distance, route and time between one user requesting for the help and the other user requesting the help can be identified.
+5. _Chatting_ : When the user asks the chatbot how to escape, Watson Assistant calls way of escape to the Cloudant data by analyzing words and intents of the user.
+6. _Chatting/Sharing map_ : Users can directly report the disaster by utilizing camera function. (By taking photos, disaster damage situation, location and time can be recorded together)
+7. _Sharing map_ : In a chat/sharing map, data about disaster situations reported by users through camera functionality is stored in Cloudant, and users can check their report details. 
 8. _Sharing map_ : Once user requests for help, the route to corresponding user and shortest time can be identified through Google Map API.
-9. _Setting_ : Alarm for disaster information can be set. Corresponding information is fetched through weather & disaster API.  
+9. _Setting_ : User can set up disaster information notification. When a user sets up to receive a notification, corresponding information is called from weather & disaster information API. 
 10. _Setting_ : Emergency contacts can be registered in Cloudant DB.
 
 
