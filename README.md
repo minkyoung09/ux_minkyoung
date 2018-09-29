@@ -23,7 +23,7 @@ Users experience disaster in various environment and situation. However, it is d
 - For example  (situation 1) : Those who hear a tornado coming would not have time to search for extensive information on where to go or what to do. The general disaster manual provides the instruction, ’Get into your basement now!’. But, they need to search for another resolution if they do not have a basement.
 - For example (situation 2) : The earthquakes disaster manual instructs to hide below the table. But, the user doesn’t have a table nearby to hide. What if the user is at the beach? Or at the mountain? Or in the middle of having shower? Or Are you with an elderly?
 
-When the user experiences a situation similar to the two examples previously mentioned, the user will say, _’What should I do?’_
+When the user experiences a situation similar to the two examples previously mentioned, the user will say, __’What should I do?’, 'How can I find the information that suits my situation?’_
 
 
 #### **[3. The disaster notification message is too general to help the user]()**
@@ -36,10 +36,10 @@ If you want to see further details of the  problem report, Click [[here]](https:
 ## Identification of key finding through IBM Design Thinking & Research
 > **_From the previously mentioned, it can be seen that it is important to provide intuitive information considering the user’s circumstance._**
 
+-	Difficulty in searching for information(disaster manual).
 -	Need someone that can help overcome the situation confronted together.
 -	Need device to contact neighbors or public organizations.
 -	Need to record damage status of disaster.
--	Difficulty in searching for information(disaster manual).
 -	Need procedures guidelines for various situations before/after a disaster.
 
 ## Why should the information providing method be improved?
@@ -58,33 +58,69 @@ If you want to see further details of the  problem report, Click [[here]](https:
 ## Solution
 We have developed the information chatbot service, Helpy, during IBM design thinking & mentoring program to resolve the problems users encounter.
 
+### Service Categories
+- Chatbot(chatting)
+- Sharing map
+- Setting
 
-### 1. Key features
+### Key features
+
+**1. Chatbot**
 - Provides 1 on 1 disaster information according to the user context
 - Information simplification and intuitiveness enhancement through chatbot
+
+**2. User-friendly and scenario-based guideline** 
+- Disaster information
+- Action Plans
+- Evacuation (Shelter location and direction
+
+**3. Report & SOS**
+- User can ask for help, or be the angel to help others.
+(Through Google map API, The shortest distance, route and time between one user requesting for the help and the other user requesting the help can be identified.)
+- Accurate information for effective rescue
+- Appropriate location and situation info delivery
+
+**2. Sharing map** 
 - Disaster sharing map that users build
-2. Service Categories
-3. Flow
-4. Featured technologies & Included Components
+- Helpy does not simply provide information. With the sharing map, Helpy allows users to share disaster information and situations real time. (Citizen-participation, The power of collective action
+Empathy: You’re not alone !) 
+- Provides disaster map made by interaction between chatbot and user
+- The sharing map can be used as data to directly/indirectly track how disaster is felt when the authorities diagnose the event. 
 
 ## Service flow & Architecture
 
-![image](https://user-images.githubusercontent.com/42545200/46168103-7a905480-c2d2-11e8-9f8f-1a0c011c28c8.png)
+![image](https://user-images.githubusercontent.com/42545200/46223993-f43a4800-c38f-11e8-9505-b84636e375d6.png)
+
 
 Helpy is a Framework7 based mobile web-page and server was configured through Node.js.
 
 1. _Chatting_ : Users send text(chatting) or voice
 2. _Chatting_ : Before start chatting, it fetches corresponding information from weather & disaster API through preprocess.
 3. _Chatting_ : Receive the response by transforming the voice into text format through STT and sending to Wastson Assistant.   
-4. _Chatting_ : Through Google map API, The shortest distance, route and time between one user requesting for the help and the other user requesting the help can be identified.
-5. _Chatting_ : When the user asks the chatbot how to escape, Watson Assistant calls way of escape to the Cloudant data by analyzing words and intents of the user.
-6. _Chatting/Sharing map_ : Users can directly report the disaster by utilizing camera function. (By taking photos, disaster damage situation, location and time can be recorded together)
+4. _Chatting_ : After received the information stored in Google Map or Cloudant, it shows to users.
+5. _Chatting_ :  If user asks chatbot how to escape an earthquake, Watson Assistant will analyze the text and its intention. Based on the analysis, it will call out the appropriate method for the user to escape in their situation from Cloudant’s data. This will enable the user to be informed of the disaster manual considering their situation using Cloudant’s data which includes instructions for various cases.
+6. _Chatting/Sharing map_ : When the user asks the chatbot how to escape, Watson Assistant calls way of escape to the Cloudant data by analyzing words and intents of the user.
 7. _Sharing map_ : In a chat/sharing map, data about disaster situations reported by users through camera functionality is stored in Cloudant, and users can check their report details. 
-8. _Sharing map_ : Once user requests for help, the route to corresponding user and shortest time can be identified through Google Map API.
+8. _Sharing map_ : Through Google map API, The shortest distance, route and time between one user requesting for the help and the other user requesting the help can be identified.
 9. _Setting_ : User can set up disaster information notification. When a user sets up to receive a notification, corresponding information is called from weather & disaster information API. 
 10. _Setting_ : Emergency contacts can be registered in Cloudant DB.
 
+## **Featured technologies & Included Components**
 
+- IBM AI Watson Conversation (Assistant)
+- Watson Speech to Text
+- IBM Cloudant
+- Node.js
+- Framework 7 
+
+### **Here’s our principles**
+Helpy built based on IBM Watson analyzes user’s words, understands intent and provides disaster information based on user’s situation. 
+
+![image](https://user-images.githubusercontent.com/42545200/46230671-45543700-c3a4-11e8-82b3-c3bacef5ab01.png)
+
+(1) Analyze and identify user’s words and intents
+(2) Disaster data call based on user's situations
+(3) Forward information to users
 
 
 ## Utilized data
@@ -98,10 +134,17 @@ Therefore, we developed the service under the assumption that government can pro
 
 **[2. Disaster Manual & Reference]()**
 
+Helpy is capable of providing instructions for 20 main situations based on the official disaster manuals such as FEMA, NCDP, etc.
+
+- [FEMA](https://www.fema.gov/media-library/assets/documents/109040)
+- [NYC.gov](https://www1.nyc.gov/site/em/ready/earthquakes.page )
+- [usa.gov](https://www.usa.gov/after-disaster)
+- [NCDP](https://ncdp.columbia.edu/library/publications/)
+- [ready.gov](https://www.ready.gov)
+- [disasterassistance.gov](https://www.disasterassistance.gov/)
 
 ## Watch the Video(Demo)
 
-**Click [here] to view the details of the project.**
 
 
 ## What is the difference/value of HELPY service?
@@ -129,24 +172,25 @@ User scenarios/service flow guideline based on Watson conversation system,
 Input guideline for service scenario in the Watson conversation system,
 Visual(graphic) design, Concept video editing
 
-#### _SangEon Jin_ / jinsw2001@gmail.com
+#### _SangEon Jin_ / jinsw2001@gmail.com / [_(Profile)_](https://www.linkedin.com/in/sang-eon-jin-31a010172/)
 Back-end development,
 Verification & Validation of Watson-chatbot service 
 
-#### _KwanWoo You_ / skymill2000@gmail.com
+#### _KwanWoo You_ / skymill2000@gmail.com / [**_(Profile)_**](www.linkedin.com/in/gwanwoo-you-50017a142)
 Front-end development,
 Back-end development(Draft)
+
 
 #### _ChiHun Lee_ / ch279lee@gmail.com
 UX Copywriting(Technical writing),
 UX Research
 
-#### (Assistant) _JaeHee Lee_ / jaehee997@gmail.com
-Research Assistance
-Input guideline for service scenario in the Watson conversation system
+#### (Assistant) _JaeHee Lee_ / jaehee97@gmail.com
+
+
 
 ## Thanks to
 
 _Thank you for your advice/help on the project :)_
-#### _JaeHo Kim_, _JinGi Kong_, _MinSeok Kim_, _JungSeok Hong_, _HyeonJi Jung_, _KwonTaek Lim_, _WooJung Seok_, _KISA(Korea Internet & Security Agency)_
+#### [_JaeHo Kim_](https://www.linkedin.com/in/jaeho-kim-352717171/), _JinGi Kong_, _MinSeok Kim_, _JungSeok Hong_, _[HyeonJi Jung](http://hadoobidoop.tistory.com/)_, _KwonTaek Lim_, _WooJung Seok_, _KISA(Korea Internet & Security Agency)_
 
